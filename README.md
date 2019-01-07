@@ -10,8 +10,13 @@ Simple example App with Angular 7.x
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server or alias `ng s`. 
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Or Command from terminal:
 
+```
+  $ open -n http://localhost:4200/
+```
 
 ## Build Project
 
