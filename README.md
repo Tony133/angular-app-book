@@ -7,6 +7,15 @@ Simple example App with Angular 7.x
     $ npm install
 ```
 
+## Settings url endpoint on file ```environment.ts```
+
+```
+    export const environment = {
+      production: false,
+      endpointApi: 'url-endpoint',
+    };
+```
+
 ## Development server
 
 Run `ng serve` for a dev server or alias `ng s`. 
