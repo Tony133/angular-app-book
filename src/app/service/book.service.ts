@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +12,13 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   addBook(title, price, author) {
-    const obj = {
+    const data = {
       title: title,
       price: price,
       author: author
     };
 
-    this.http.post(`${this.endpoint}`, obj).subscribe(res => console.log('Create Done'));
+    this.http.post(`${this.endpoint}`, data).subscribe(res => console.log('Create Done'));
   }
 
   getBooks() {
@@ -31,13 +30,13 @@ export class BookService {
   }
 
   updateBook(title, price, author, id) {
-    const obj = {
+    const data = {
       title: title,
       price: price,
       author: author
     };
 
-    this.http.put(`${this.endpoint}/${id}`, obj).subscribe(res => console.log('Update Done'));
+    this.http.put(`${this.endpoint}/${id}`, data).subscribe(res => console.log('Update Done'));
   }
 
 	deleteBook(id) {

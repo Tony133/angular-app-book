@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../book.service';
+import { Router } from '@angular/router';
+import { BookService } from '../service/book.service';
 
 @Component({
   selector: 'app-add-book',
@@ -11,7 +11,11 @@ import { BookService } from '../book.service';
 export class AddBookComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private book: BookService, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private book: BookService, 
+    private router: Router
+  ) {
     this.createForm();
   }
 

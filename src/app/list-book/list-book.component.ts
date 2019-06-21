@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Book from '../Book';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BookService } from '../book.service';
+import { Router } from '@angular/router';
+import { BookService } from '../service/book.service';
 
 @Component({
   selector: 'app-list-book',
@@ -16,12 +15,12 @@ export class ListBookComponent implements OnInit {
 
   ngOnInit() {
     this.book.getBooks().subscribe(data  => {
-        this.books = data;
+      this.books = data;
 		});
   }
 
 	deleteBook(id) {
-		this.book.deleteBook(id).subscribe(res => {
+		this.book.deleteBook(id).subscribe(response => {
       this.router.navigate(['book']);
 		});
 	}
