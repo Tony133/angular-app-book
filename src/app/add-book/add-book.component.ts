@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BookService } from '../service/book.service';
 
@@ -11,9 +11,13 @@ import { BookService } from '../service/book.service';
 export class AddBookComponent implements OnInit {
 
   angForm: FormGroup;
+  submitted: boolean = false;
+  errorBook: boolean = true;
+  success: boolean = false;
+
   constructor(
     private fb: FormBuilder, 
-    private book: BookService, 
+    private bookService: BookService, 
     private router: Router
   ) {
     this.createForm();
@@ -26,13 +30,25 @@ export class AddBookComponent implements OnInit {
       author: ['', Validators.required ],
     });
   }
+  
+  onSubmit() {
+    this.submitted = true;
+    
+    if (this.angForm.invalid) {
+      return;
+    }
 
-  addBook(title, price, author) {
-    this.book.addBook(title, price, author);
-    this.router.navigate(['book']);
+    this.bookService.addBook(this.angForm.value)
+      .subscribe(response => {
+        this.success = true;
+        this.router.navigate(['book']);
+      }, err => {
+        this.submitted = false;
+        this.errorBook = true;
+      });
   }
 
   ngOnInit() {
-  }
 
+  }
 }

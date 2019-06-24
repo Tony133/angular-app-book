@@ -1,8 +1,22 @@
 <div class="container">
+    <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+        Book added successfully!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+          
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        Book not added!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
     <h2>Add Book</h2>
     <div class="card">
         <div class="card-body">
-            <form [formGroup]="angForm" novalidate>
+            <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group">
                     <label class="col-md-4">Title</label>
                     <input type="text" class="form-control" formControlName="title" #title />
@@ -31,9 +45,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button (click)="addBook(title.value, price.value, author.value)"
-                    [disabled]="angForm.pristine || angForm.invalid"
-                    class="btn btn-primary">Add Book</button>
+                    <button [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Add Book</button>
                 </div>
             </form>
         </div>

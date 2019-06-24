@@ -1,11 +1,20 @@
 <div class="container">
+    <div *ngIf="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+        Book successfully deleted!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    
     <h2>List Books</h2>
-    <table class="table table-striped table-hover">
+    <hr>
+    <table *ngIf="books" class="table table-striped table-hover">
         <thead>
             <tr>
               <th>ID</th>
               <th>Book Title</th>
               <th>Book Price</th>
+              <th>Book Author</th>
               <th>Action</th>
             </tr>
         </thead>
@@ -14,6 +23,7 @@
               <td>{{ book.id }}</td>
               <td>{{ book.title }}</td>
               <td>{{ book.price }}</td>
+              <td>{{ book.author }}</td>
               <td>
                  <a [routerLink]="['/book/edit', book.id]" class="btn btn-primary">Edit</a>
                  <a [routerLink]="['/']" (click)="deleteBook(book.id)" class="btn btn-danger">Delete</a>

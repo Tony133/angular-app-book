@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-
+import Book from './../Book';
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -11,36 +13,23 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  addBook(title, price, author) {
-    const data = {
-      title: title,
-      price: price,
-      author: author
-    };
-
-    this.http.post(`${this.endpoint}`, data).subscribe(res => console.log('Create Done'));
+  addBook(book: Book): Observable<Book[]> {
+    return this.http.post<Book[]>(`${this.endpoint}`, book);
   }
 
-  getBooks() {
-    return this.http.get(`${this.endpoint}`);
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.endpoint}`);
   }
 
-  editBook(id) {
-    return this.http.get(`${this.endpoint}/${id}`);
+  editBook(id: number): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.endpoint}/${id}`);
   }
 
-  updateBook(title, price, author, id) {
-    const data = {
-      title: title,
-      price: price,
-      author: author
-    };
-
-    this.http.put(`${this.endpoint}/${id}`, data).subscribe(res => console.log('Update Done'));
+  updateBook(book: Book, id: number): Observable<Book[]> {
+    return this.http.put<Book[]>(`${this.endpoint}/${id}`, book);
   }
 
-	deleteBook(id) {
-		return this.http.delete(`${this.endpoint}/${id}`);
+	deleteBook(id: number): Observable<Book[]> {
+		return this.http.delete<Book[]>(`${this.endpoint}/${id}`);
 	}
-
 }

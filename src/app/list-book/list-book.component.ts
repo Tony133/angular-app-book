@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookService } from '../service/book.service';
+import Book from '../Book';
 
 @Component({
   selector: 'app-list-book',
@@ -9,18 +10,20 @@ import { BookService } from '../service/book.service';
 })
 export class ListBookComponent implements OnInit {
 
-  books: any;
+  books: Book[];
+  success: boolean = false;
 
-  constructor(private book: BookService, private router: Router) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
   ngOnInit() {
-    this.book.getBooks().subscribe(data  => {
-      this.books = data;
+    this.bookService.getBooks().subscribe(response  => {
+      this.books = response;
 		});
   }
 
-	deleteBook(id) {
-		this.book.deleteBook(id).subscribe(response => {
+	deleteBook(id): void {
+		this.bookService.deleteBook(id).subscribe(response => {
+      this.success = true;
       this.router.navigate(['book']);
 		});
 	}
