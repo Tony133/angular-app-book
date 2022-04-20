@@ -2,3 +2,10 @@
     color: #fff !important;
     margin-left: 10px;
 }
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    margin-top: 10px;
+}
