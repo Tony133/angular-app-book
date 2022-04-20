@@ -1,10 +1,16 @@
-# Angular7AppBook
-Simple example App with Angular 7.x
+# AngularAppBook
+Simple example App with Angular 12.x
 
 ## Install Project
 
 ```
-    $ npm install
+    $ yarn install
+```
+
+## Run App
+
+```
+  $ yarn start
 ```
 
 ## Settings url endpoint on file ```environment.ts```
