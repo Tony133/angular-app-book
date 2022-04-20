@@ -1,4 +1,5 @@
-# AngularAppBook
+# angular-app-book
+
 Simple example App with Angular 12.x
 
 ## Install Project
