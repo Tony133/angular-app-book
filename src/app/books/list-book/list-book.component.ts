@@ -16,15 +16,19 @@ export class ListBookComponent implements OnInit {
   constructor(private bookService: BookService, private router: Router) {}
 
   ngOnInit() {
-    this.bookService.getBooks().subscribe((response) => {
-      this.books = response;
+    this.bookService.getBooks().subscribe({
+      next: (response) => {
+        this.books = response;
+      },
     });
   }
 
   deleteBook(id): void {
-    this.bookService.deleteBook(id).subscribe((response) => {
-      this.success = true;
-      this.router.navigate(["book"]);
+    this.bookService.deleteBook(id).subscribe({
+      next: (response) => {
+        this.success = true;
+        this.router.navigate(["book"]);
+      },
     });
   }
 }

@@ -1,6 +1,6 @@
 # angular-app-book
 
-Simple example App with Angular 12.x
+Simple example App with Angular 14.x
 
 ## Install Project
 

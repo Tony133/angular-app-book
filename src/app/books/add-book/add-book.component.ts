@@ -37,16 +37,16 @@ export class AddBookComponent implements OnInit {
       return;
     }
 
-    this.bookService.addBook(this.angForm.value).subscribe(
-      (response) => {
+    this.bookService.addBook(this.angForm.value).subscribe({
+      next: (response) => {
         this.success = true;
         this.router.navigate(["book"]);
       },
-      (err) => {
+      error: (err) => {
         this.submitted = false;
         this.errorBook = true;
-      }
-    );
+      },
+    });
   }
 
   ngOnInit() {}
