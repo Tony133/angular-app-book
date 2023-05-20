@@ -1,6 +1,6 @@
 # angular-app-book
 
-Simple example App with Angular 15.x
+Simple example App with Angular 16.x
 
 ## Install Project
 
