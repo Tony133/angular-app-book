@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { BookService } from "../../services";
 
@@ -7,6 +8,8 @@ import { BookService } from "../../services";
   selector: "app-add-book",
   templateUrl: "./add-book.component.html",
   styleUrls: ["./add-book.component.css"],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [BookService]
 })
 export class AddBookComponent implements OnInit {
   angForm: FormGroup;
@@ -26,7 +29,7 @@ export class AddBookComponent implements OnInit {
     this.angForm = this.fb.group({
       title: ["", Validators.required],
       price: ["", Validators.required],
-      author: ["", Validators.required],
+      author: ["", Validators.required]
     });
   }
 
@@ -45,7 +48,7 @@ export class AddBookComponent implements OnInit {
       error: (err) => {
         this.submitted = false;
         this.errorBook = true;
-      },
+      }
     });
   }
 
