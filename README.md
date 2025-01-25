@@ -1,22 +1,22 @@
 # angular-app-book
 
-Simple example App with Angular 16.x
+Simple example App with Angular 19.x using the standalone components
 
 ## Install Project
 
-```
-    $ yarn install
+```bash
+  pnpm install
 ```
 
 ## Run App
 
-```
-  $ yarn start
+```bash
+  pnpm start
 ```
 
 ## Settings url endpoint on file ```environment.ts```
 
-```
+```ts
     export const environment = {
       production: false,
       endpointApi: 'url-endpoint',
@@ -25,12 +25,12 @@ Simple example App with Angular 16.x
 
 ## Development server
 
-Run `ng serve` for a dev server or alias `ng s`. 
+Run `ng serve` for a dev server or alias `ng s`.
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 Or Command from terminal:
 
 ```
-  $ open -n http://localhost:4200/
+  open -n http://localhost:4200/
 ```
 
 ## Build Project

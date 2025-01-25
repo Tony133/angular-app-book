@@ -1,12 +1,15 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { BookService } from "../../services";
 import Book from "../../Book";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-list-book",
   templateUrl: "./list-book.component.html",
   styleUrls: ["./list-book.component.css"],
+  imports: [CommonModule, RouterModule],
+  providers: [BookService]
 })
 export class ListBookComponent implements OnInit {
   books: Book[];
@@ -19,7 +22,7 @@ export class ListBookComponent implements OnInit {
     this.bookService.getBooks().subscribe({
       next: (response) => {
         this.books = response;
-      },
+      }
     });
   }
 
@@ -28,7 +31,7 @@ export class ListBookComponent implements OnInit {
       next: (response) => {
         this.success = true;
         this.router.navigate(["book"]);
-      },
+      }
     });
   }
 }

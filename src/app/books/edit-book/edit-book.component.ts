@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BookService } from "../../services";
 import { first } from "rxjs/operators";
 
@@ -8,6 +9,8 @@ import { first } from "rxjs/operators";
   selector: "app-edit-book",
   templateUrl: "./edit-book.component.html",
   styleUrls: ["./edit-book.component.css"],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  providers: [BookService]
 })
 export class EditBookComponent implements OnInit {
   angForm: FormGroup;
@@ -29,7 +32,7 @@ export class EditBookComponent implements OnInit {
     this.angForm = this.fb.group({
       title: ["", Validators.required],
       price: ["", Validators.required],
-      author: ["", Validators.required],
+      author: ["", Validators.required]
     });
   }
 
@@ -42,7 +45,7 @@ export class EditBookComponent implements OnInit {
       },
       error: (err) => {
         this.errorBook = true;
-      },
+      }
     });
   }
 
@@ -66,12 +69,12 @@ export class EditBookComponent implements OnInit {
             error: (err) => {
               this.submitted = false;
               this.errorBook = true;
-            },
+            }
           });
       },
       error: (err) => {
         this.errorBook = true;
-      },
+      }
     });
   }
 }
