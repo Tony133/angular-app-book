@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
-import { BookService } from "../../services";
+import { BookService } from "../services";
 
 @Component({
   selector: "app-add-book",
@@ -12,21 +12,21 @@ import { BookService } from "../../services";
   providers: [BookService]
 })
 export class AddBookComponent implements OnInit {
-  angForm: FormGroup;
-  submitted: boolean = false;
-  errorBook: boolean = false;
-  success: boolean = false;
+  public form: FormGroup;
+  public submitted: boolean = false;
+  public errorBook: boolean = false;
+  public success: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
-    private bookService: BookService,
-    private router: Router
+    private readonly fb: FormBuilder,
+    private readonly bookService: BookService,
+    private readonly router: Router
   ) {
     this.createForm();
   }
 
   createForm() {
-    this.angForm = this.fb.group({
+    this.form = this.fb.group({
       title: ["", Validators.required],
       price: ["", Validators.required],
       author: ["", Validators.required]
@@ -36,11 +36,11 @@ export class AddBookComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.angForm.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
-    this.bookService.addBook(this.angForm.value).subscribe({
+    this.bookService.addBook(this.form.value).subscribe({
       next: (response) => {
         this.success = true;
         this.router.navigate(["book"]);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
-import { BookService } from "../../services";
-import Book from "../../Book";
+import { BookService } from "../services";
+import Book from "../models/book";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -12,13 +12,16 @@ import { CommonModule } from "@angular/common";
   providers: [BookService]
 })
 export class ListBookComponent implements OnInit {
-  books: Book[];
-  success: boolean = false;
-  message: boolean = false;
+  public books: Book[];
+  public success: boolean = false;
+  public message: boolean = false;
 
-  constructor(private bookService: BookService, private router: Router) {}
+  constructor(
+    private readonly bookService: BookService,
+    private readonly router: Router
+  ) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.bookService.getBooks().subscribe({
       next: (response) => {
         this.books = response;
@@ -26,7 +29,7 @@ export class ListBookComponent implements OnInit {
     });
   }
 
-  deleteBook(id): void {
+  public deleteBook(id): void {
     this.bookService.deleteBook(id).subscribe({
       next: (response) => {
         this.success = true;
