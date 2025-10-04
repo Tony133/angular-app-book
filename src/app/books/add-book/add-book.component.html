@@ -12,15 +12,14 @@
   <h2>Add Book</h2>
   <div class="card">
     <div class="card-body">
-      <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
           <label class="col-md-4">Title</label>
           <input type="text" class="form-control" formControlName="title" #title />
         </div>
-        <div
-          *ngIf="angForm.controls['title'].invalid && (angForm.controls['title'].dirty || angForm.controls['title'].touched)"
+        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)"
           class="alert alert-danger">
-          <div *ngIf="angForm.controls['title'].errors['required']">
+          <div *ngIf="form.controls['title'].errors['required']">
             Title Book is required.
           </div>
         </div>
@@ -28,10 +27,9 @@
           <label class="col-md-4">Price</label>
           <input type="text" class="form-control" formControlName="price" #price />
         </div>
-        <div
-          *ngIf="angForm.controls['price'].invalid && (angForm.controls['price'].dirty || angForm.controls['price'].touched)"
+        <div *ngIf="form.controls['price'].invalid && (form.controls['price'].dirty || form.controls['price'].touched)"
           class="alert alert-danger">
-          <div *ngIf="angForm.controls['price'].errors['required']">
+          <div *ngIf="form.controls['price'].errors['required']">
             Price Book is required.
           </div>
         </div>
@@ -40,14 +38,14 @@
           <input type="text" class="form-control" formControlName="author" #author />
         </div>
         <div
-          *ngIf="angForm.controls['author'].invalid && (angForm.controls['author'].dirty || angForm.controls['author'].touched)"
+          *ngIf="form.controls['author'].invalid && (form.controls['author'].dirty || form.controls['author'].touched)"
           class="alert alert-danger">
-          <div *ngIf="angForm.controls['author'].errors['required']">
+          <div *ngIf="form.controls['author'].errors['required']">
             Author Book is required.
           </div>
         </div>
         <div class="form-group">
-          <button [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary btn-add-book">Add
+          <button [disabled]="form.pristine || form.invalid" class="btn btn-primary btn-add-book">Add
             Book</button>
         </div>
       </form>

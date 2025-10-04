@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { BookService } from "../../services";
+import { BookService } from "../services";
 import { first } from "rxjs/operators";
+import Book from "../models/book";
 
 @Component({
   selector: "app-edit-book",
@@ -13,26 +14,26 @@ import { first } from "rxjs/operators";
   providers: [BookService]
 })
 export class EditBookComponent implements OnInit {
-  angForm: FormGroup;
-  submitted: boolean = false;
-  success: boolean = false;
-  errorBook: boolean = false;
-  book: any = [{}];
+  public form: FormGroup;
+  public submitted: boolean = false;
+  public success: boolean = false;
+  public errorBook: boolean = false;
+  public book: Book[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private bookService: BookService,
-    private fb: FormBuilder
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly bookService: BookService,
+    private readonly fb: FormBuilder
   ) {
     this.createForm();
   }
 
   createForm() {
-    this.angForm = this.fb.group({
-      title: ["", Validators.required],
-      price: ["", Validators.required],
-      author: ["", Validators.required]
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      price: ['', Validators.required],
+      author: ['', Validators.required]
     });
   }
 
@@ -52,18 +53,18 @@ export class EditBookComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.angForm.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
     this.route.params.subscribe({
       next: (params) => {
         this.bookService
-          .updateBook(this.angForm.value, params["id"])
+          .updateBook(this.form.value, params['id'])
           .pipe(first())
           .subscribe({
             next: (response) => {
-              this.router.navigate(["book"]);
+              this.router.navigate(['book']);
               this.success = true;
             },
             error: (err) => {
