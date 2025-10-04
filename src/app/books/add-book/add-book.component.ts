@@ -5,9 +5,9 @@ import { Router } from "@angular/router";
 import { BookService } from "../services";
 
 @Component({
-  selector: "app-add-book",
-  templateUrl: "./add-book.component.html",
-  styleUrls: ["./add-book.component.css"],
+  selector: 'app-add-book',
+  templateUrl: './add-book.component.html',
+  styleUrls: ['./add-book.component.css'],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   providers: [BookService]
 })
@@ -25,15 +25,17 @@ export class AddBookComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  public ngOnInit(): void {}
+
+  public createForm(): void {
     this.form = this.fb.group({
-      title: ["", Validators.required],
-      price: ["", Validators.required],
-      author: ["", Validators.required]
+      title: ['', Validators.required],
+      price: ['', Validators.required],
+      author: ['', Validators.required]
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -41,16 +43,14 @@ export class AddBookComponent implements OnInit {
     }
 
     this.bookService.addBook(this.form.value).subscribe({
-      next: (response) => {
+      next: () => {
         this.success = true;
-        this.router.navigate(["book"]);
+        this.router.navigate(['book']);
       },
-      error: (err) => {
+      error: () => {
         this.submitted = false;
         this.errorBook = true;
       }
     });
   }
-
-  ngOnInit() {}
 }

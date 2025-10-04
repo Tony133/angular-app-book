@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BookService } from "../services";
 import { first } from "rxjs/operators";
-import Book from "../models/book";
+import Book from "../models/book.model";
 
 @Component({
   selector: "app-edit-book",
@@ -29,7 +29,7 @@ export class EditBookComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  public createForm(): void {
     this.form = this.fb.group({
       title: ['', Validators.required],
       price: ['', Validators.required],
@@ -37,10 +37,10 @@ export class EditBookComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.route.params.subscribe({
       next: (params) => {
-        this.bookService.editBook(params["id"]).subscribe((response) => {
+        this.bookService.getBook(params["id"]).subscribe((response) => {
           this.book = response;
         });
       },
@@ -50,7 +50,7 @@ export class EditBookComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -63,17 +63,17 @@ export class EditBookComponent implements OnInit {
           .updateBook(this.form.value, params['id'])
           .pipe(first())
           .subscribe({
-            next: (response) => {
+            next: () => {
               this.router.navigate(['book']);
               this.success = true;
             },
-            error: (err) => {
+            error: () => {
               this.submitted = false;
               this.errorBook = true;
             }
           });
       },
-      error: (err) => {
+      error: () => {
         this.errorBook = true;
       }
     });

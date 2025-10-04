@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { BookService } from "../services";
-import Book from "../models/book";
+import Book from "../models/book.model";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -31,7 +31,7 @@ export class ListBookComponent implements OnInit {
 
   public deleteBook(id): void {
     this.bookService.deleteBook(id).subscribe({
-      next: (response) => {
+      next: () => {
         this.success = true;
         this.router.navigate(["book"]);
       }
