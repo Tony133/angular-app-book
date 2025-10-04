@@ -5,13 +5,13 @@ import Book from "../models/book.model";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "app-list-book",
-  templateUrl: "./list-book.component.html",
-  styleUrls: ["./list-book.component.css"],
+  selector: 'app-book-list',
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.css'],
   imports: [CommonModule, RouterModule],
   providers: [BookService]
 })
-export class ListBookComponent implements OnInit {
+export class BookListComponent implements OnInit {
   public books: Book[];
   public success: boolean = false;
   public message: boolean = false;
@@ -33,7 +33,7 @@ export class ListBookComponent implements OnInit {
     this.bookService.deleteBook(id).subscribe({
       next: () => {
         this.success = true;
-        this.router.navigate(["book"]);
+        this.router.navigate(['book']);
       }
     });
   }
