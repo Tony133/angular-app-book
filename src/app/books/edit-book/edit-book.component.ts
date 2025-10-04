@@ -44,7 +44,7 @@ export class EditBookComponent implements OnInit {
           this.book = response;
         });
       },
-      error: (err) => {
+      error: () => {
         this.errorBook = true;
       }
     });

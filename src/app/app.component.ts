@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule, CommonModule],
 })
 export class AppComponent {
-  title = "Simple Example app with Angular";
+  title = "Simple example app with Angular";
 }
