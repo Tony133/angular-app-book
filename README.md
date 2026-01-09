@@ -1,6 +1,6 @@
 # angular-app-book
 
-Simple example App with Angular 20.x using the standalone components
+Simple example App with Angular 21.x using the standalone components and angular signals
 
 ## Install Project
 

@@ -49,7 +49,7 @@ export class BookService {
     );
   }
 
-  public deleteBook(id: number): Observable<void> {
+  public deleteBook(id: string): Observable<void> {
     return this.http.delete<void>(`${this.endpoint}/${id}`).pipe(
       catchError((error) => {
         console.error(`Error deleting book with ID ${id}:`, error);

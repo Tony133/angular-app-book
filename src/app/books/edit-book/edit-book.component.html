@@ -1,53 +1,70 @@
 <div class="container">
-  <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+  @if (success()) {
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     Book updated successfully!
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
+  }
 
-  <div *ngIf="errorBook" class="alert alert-danger alert-dismissible fade show" role="alert">
+  @if (errorBook()) {
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
     Book ID not found!
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
+  }
 
-  <h2>Edit Book </h2>
+  <h2>Edit Book</h2>
+
+  @if (isLoading()) {
+  <div class="alert alert-info">
+    Loading book data...
+  </div>
+  } @else if (book()) {
   <div class="card">
     <div class="card-body">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
           <label class="col-md-4">Title</label>
-          <input type="text" class="form-control" formControlName="title" #title [(ngModel)]="book[0].title" />
+          <input type="text" class="form-control" formControlName="title" />
         </div>
-        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="form.controls['title'].errors['required']">
-            Book Title is required.
-          </div>
+        @if (form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)) {
+        <div class="alert alert-danger">
+          @if (form.controls['title'].errors?.['required']) {
+          <div>Book Title is required.</div>
+          }
         </div>
+        }
+
         <div class="form-group">
-          <label class="col-md-4">Price </label>
-          <input type="text" class="form-control" formControlName="price" #price [(ngModel)]="book[0].price" />
+          <label class="col-md-4">Price</label>
+          <input type="text" class="form-control" formControlName="price" />
         </div>
-        <div *ngIf="form.controls['price'].invalid && (form.controls['price'].dirty || form.controls['price'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="form.controls['price'].errors['required']">
-            Book Price is required.
-          </div>
+        @if (form.controls['price'].invalid && (form.controls['price'].dirty || form.controls['price'].touched)) {
+        <div class="alert alert-danger">
+          @if (form.controls['price'].errors?.['required']) {
+          <div>Book Price is required.</div>
+          }
         </div>
+        }
+
         <div class="form-group">
-          <label class="col-md-4">Author </label>
-          <input type="text" class="form-control" formControlName="author" #author [(ngModel)]="book[0].author" />
+          <label class="col-md-4">Author</label>
+          <input type="text" class="form-control" formControlName="author" />
         </div>
-        <div
-          *ngIf="form.controls['author'].invalid && (form.controls['author'].dirty || form.controls['author'].touched)"
-          class="alert alert-danger">
-          <div *ngIf="form.controls['author'].errors['required']">
-            Book Author is required.
-          </div>
+        @if (form.controls['author'].invalid && (form.controls['author'].dirty || form.controls['author'].touched)) {
+        <div class="alert alert-danger">
+          @if (form.controls['author'].errors?.['required']) {
+          <div>Book Author is required.</div>
+          }
         </div>
+        }
+
         <div class="form-group">
-          <button [disabled]="form.invalid" class="btn btn-primary btn-edit-book">Update Book</button>
+          <button [disabled]="form.invalid" class="btn btn-primary btn-edit-book">
+            Update Book
+          </button>
         </div>
       </form>
     </div>
   </div>
-</div>
+  }

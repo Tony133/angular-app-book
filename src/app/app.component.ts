@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  standalone: true,
   imports: [RouterModule, CommonModule],
 })
 export class AppComponent {
